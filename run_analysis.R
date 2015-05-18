@@ -64,20 +64,11 @@ alldata <- alldata[,c(1,2,idx)]
 
 #Use Descriptive Activity Names
 alldata$act <- gsubfn("[1|2|3|4|5|6]",list("1"="WALKING", 
-
-#create tidy data
-
-grouped_test <- testdata %>% group_by(Subject, Activity) %>% summarise_each(funs(mean))
-grouped_train <- traindata %>% group_by(Subject, Activity) %>% summarise_each(funs(mean))
-
-final_data <- rbind(grouped_test, grouped_train)
-
-final_data$Activity <- gsubfn("[1|2|3|4|5|6]",list("1"="WALKING", 
-                                                   "2"="WALKING_UPSTAIRS", 
-                                                   "3"="WALKING_DOWNSTAIRS",
-                                                   "4"="SITTING",
-                                                   "5"="STANDING", 
-                                                   "6"="LAYING"), 
+                                           "2"="WALKING_UPSTAIRS", 
+                                           "3"="WALKING_DOWNSTAIRS",
+                                           "4"="SITTING",
+                                           "5"="STANDING", 
+                                           "6"="LAYING"), 
                               as.character(alldata$act))
 
 #Step 4:  Appropriately label the dataset
