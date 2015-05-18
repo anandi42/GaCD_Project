@@ -5,14 +5,11 @@ Sunday, May 17, 2015
   This document provides details about the construction and content of the tidy data set generated from the file run_ananlysis.R.  
   The source of the [data][1] is UCI's Machine Learning repository. Information about the original data [can be found here][2].  
   
-  
-
-  
+ 
 ##Creation of the Dataset
   The file runanalysis.R provides the code used to process and tidy the dataset. Processing starts with a downloaded zip file and ends with a single tidy dataset written to a text file.  
   After downloading the source data file, reading the description of the UCI dataset, we see that there are 8 key files that will construct our datasets:
-  
-
+ 
 ```
 ## [1] "UCI HAR Dataset/test/subject_test.txt"  
 ## [2] "UCI HAR Dataset/test/X_test.txt"        
