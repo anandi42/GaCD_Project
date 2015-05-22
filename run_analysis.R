@@ -1,5 +1,5 @@
 #Getting and Cleaning Data Peer Assesment #1
-#See CodeBook for further explanation of the steps coded below. 
+#See README for further explanation of the steps coded below. 
 
 ##Setup Steps
 mainDir <- "~"
