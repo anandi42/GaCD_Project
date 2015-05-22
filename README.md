@@ -4,18 +4,12 @@
 
 This repo contains:  
   * [run_analysis.R](run_analysis.R), a script, which when run, will download the dataset, and create the final dataset.  
-	* [CodeBook.md](CodeBook.md), listing and description of variables in data.   
-	* [tidydata.txt](tidydata.txt), the final data, which can be read into r with the code below:  `read.table("tidydata.txt", sep="\t", header = TRUE)`
+  * [CodeBook.md](CodeBook.md), listing and description of variables in data.   
+  * [tidydata.txt](tidydata.txt), the final data, which can be read into r with the code below:  `read.table("tidydata.txt", sep="\t", header = TRUE)`
 
 
 #Creation of the Dataset: explanation and justification   
-
-```
-## Loading required package: proto
-```
-  
 To create the dataset, 7 files from the original .zip archive were used
-  
 
 ```
 ## [1] "UCI HAR Dataset/test/subject_test.txt"  
@@ -26,7 +20,7 @@ To create the dataset, 7 files from the original .zip archive were used
 ## [6] "UCI HAR Dataset/train/y_train.txt"      
 ## [7] "UCI HAR Dataset/features.txt"
 ```
-  
+
   A user-defined function, `createtables`, reads in the data from the `X_test`(or `X_train`), `subject_test`(or `subject_train`), and `y_train`(or `y_test`) files to create the initial datasets. The measurement names in `features` are used as the column labels in `X`. The end result is a dataset where the first colum is the subject identifier, the second colum are the activity identifiers (i.e 1-6), and the remaining columns correspond to the extracted feature measurements from `features`.  
   
 ###Step 1: Merging Test and Training Datasets:  
@@ -60,7 +54,6 @@ Using the information in `activity_labels.txt`, the second column is converted f
 
 ###Step 4: Appropriately label the dataset:  
 The current dataset is now a long form dataset with the columns:  
-
     *SubjectID: subject number  
     *ActivityType:activity labels  
     *Measurement: name of feature  
@@ -70,7 +63,6 @@ The current dataset is now a long form dataset with the columns:
 
 ###Step 5: Create a second indepedent tidy dataset:  
 The current long form dataset is casted into a wide form, aggregating by the mean of the measurement at each subject and each activity. This dataset is written to a text file so that it can be read back into R. 
-
 
 ```r
 final <- read.table("tidydata.txt", sep="\t", header = TRUE)
