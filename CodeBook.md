@@ -1,34 +1,58 @@
 # Getting and Cleaning Data: Course Project
-Sunday, May 17, 2015  
+Sunday, May 19, 2015  
 #Codebook for Tidy UCI HAR Data Set
 
-  This document provides details about the construction and content of the tidy data set generated from the file run_ananlysis.R.  
-  The source of the [data][1] is UCI's Machine Learning repository. Information about the original data [can be found here][2].  
-  
+  This document provides details the dataset [created by run_analysis.R.](run_analysis.R)
  
-##Creation of the Dataset
-  The file runanalysis.R provides the code used to process and tidy the dataset. Processing starts with a downloaded zip file and ends with a single tidy dataset written to a text file.  
-  After downloading the source data file, reading the description of the UCI dataset, we see that there are 8 key files that will construct our datasets:
- 
+
+  
+List of Variables:
+
 ```
-## [1] "UCI HAR Dataset/test/subject_test.txt"  
-## [2] "UCI HAR Dataset/test/X_test.txt"        
-## [3] "UCI HAR Dataset/test/y_test.txt"        
-## [4] "UCI HAR Dataset/train/subject_train.txt"
-## [5] "UCI HAR Dataset/train/X_train.txt"      
-## [6] "UCI HAR Dataset/train/y_train.txt"      
-## [7] "UCI HAR Dataset/activity_labels.txt"    
-## [8] "UCI HAR Dataset/features.txt"
+##  [1] "SubjectID"                 "ActivityType"             
+##  [3] "fBodyAcc_mean_X"           "fBodyAcc_mean_Y"          
+##  [5] "fBodyAcc_mean_Z"           "fBodyAcc_std_X"           
+##  [7] "fBodyAcc_std_Y"            "fBodyAcc_std_Z"           
+##  [9] "fBodyAccJerk_mean_X"       "fBodyAccJerk_mean_Y"      
+## [11] "fBodyAccJerk_mean_Z"       "fBodyAccJerk_std_X"       
+## [13] "fBodyAccJerk_std_Y"        "fBodyAccJerk_std_Z"       
+## [15] "fBodyAccMag_mean"          "fBodyAccMag_std"          
+## [17] "fBodyBodyAccJerkMag_mean"  "fBodyBodyAccJerkMag_std"  
+## [19] "fBodyBodyGyroJerkMag_mean" "fBodyBodyGyroJerkMag_std" 
+## [21] "fBodyBodyGyroMag_mean"     "fBodyBodyGyroMag_std"     
+## [23] "fBodyGyro_mean_X"          "fBodyGyro_mean_Y"         
+## [25] "fBodyGyro_mean_Z"          "fBodyGyro_std_X"          
+## [27] "fBodyGyro_std_Y"           "fBodyGyro_std_Z"          
+## [29] "tBodyAcc_mean_X"           "tBodyAcc_mean_Y"          
+## [31] "tBodyAcc_mean_Z"           "tBodyAcc_std_X"           
+## [33] "tBodyAcc_std_Y"            "tBodyAcc_std_Z"           
+## [35] "tBodyAccJerk_mean_X"       "tBodyAccJerk_mean_Y"      
+## [37] "tBodyAccJerk_mean_Z"       "tBodyAccJerk_std_X"       
+## [39] "tBodyAccJerk_std_Y"        "tBodyAccJerk_std_Z"       
+## [41] "tBodyAccJerkMag_mean"      "tBodyAccJerkMag_std"      
+## [43] "tBodyAccMag_mean"          "tBodyAccMag_std"          
+## [45] "tBodyGyro_mean_X"          "tBodyGyro_mean_Y"         
+## [47] "tBodyGyro_mean_Z"          "tBodyGyro_std_X"          
+## [49] "tBodyGyro_std_Y"           "tBodyGyro_std_Z"          
+## [51] "tBodyGyroJerk_mean_X"      "tBodyGyroJerk_mean_Y"     
+## [53] "tBodyGyroJerk_mean_Z"      "tBodyGyroJerk_std_X"      
+## [55] "tBodyGyroJerk_std_Y"       "tBodyGyroJerk_std_Z"      
+## [57] "tBodyGyroJerkMag_mean"     "tBodyGyroJerkMag_std"     
+## [59] "tBodyGyroMag_mean"         "tBodyGyroMag_std"         
+## [61] "tGravityAcc_mean_X"        "tGravityAcc_mean_Y"       
+## [63] "tGravityAcc_mean_Z"        "tGravityAcc_std_X"        
+## [65] "tGravityAcc_std_Y"         "tGravityAcc_std_Z"        
+## [67] "tGravityAccMag_mean"       "tGravityAccMag_std"
 ```
   
-  A user-defined function, `createtables`, puts together three tables to generate the datasets: `X_test`, `subject_test`, and `y_test` (or train) to create the initial datasets. The measurement names in `features` are used as the column labels in `X`. The end result is a dataset where the first colum is the subject identifier, the second colum are the activity identifiers (i.e 1-6), and the remaining columns correspond to the extracted feature measurements from `features`.  
+The first two variables are: 
+
+  *`SubjectID`: subject number, (1-20)    
   
-###Step 1: Merging Test and Training Datasets:  
-The test and training datasets are clipped together with `rbind`.  
-
-###Step 2: Extract only the mean and standard deviation measurements:  
-There are 33 features listed for the UCI dataset are (where XYZ represents 3 variables, one for each axis): 
-
+  *`ActivityType`: activity labels (WALKNG, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING). 
+      
+  The rest of the variables represent the average mean and std measuremtn for each of 33 features, aggregated for each subject and each activity. The original features were:
+  
 tBodyAcc-XYZ  
 tGravityAcc-XYZ  
 tBodyAccJerk-XYZ  
@@ -47,34 +71,5 @@ fBodyAccJerkMag
 fBodyGyroMag  
 fBodyGyroJerkMag    
 
-The search string "mean[^meanFreq]|std" is passed to `grep()` to get only those measurements representing mean and std. The meanFreq variable is not one of the `mean()` or `std()` measures of the 33 features listed above.  
+  Each of the features above had a `mean()` and `std()` value, which were extracted and then averaged at each subject/activity type. The names of the features were slightly modified to get rid of special characters () and - just to make manipulating the variables in the dataset a little cleaner. 
 
-###Step 3: Use Descriptive Activity Names:  
-Using the `activity_labels` file, we change the second column of the curent data from digits 1-6 to descriptive labels: WALKING, WALKING UPSTAIRS, WALKING DOWNSTAIRS, SITTING, STANDING, LAYING. 
-
-###Step 4: Appropriately label the dataset:  
-The current dataset is now a long form dataset with the column labels `SubjectID`, `ActivityType`, `Measurement`, `MeasureValue`, representing the subject number, activity labels, the specific feature measurement, and the value of that measurement. We also perform 2 clean up steps to remove "()" from the feature variable names, and replace "-" with underscores. Thus `fBodyAcc-mean()-X` becomes `fBodyAcc_mean_X`. This cleanup step is done 
-
-###Step 5: Creating a second indepedent tidy dataset:  
-The current long form dataset is casted into a wide dataset, aggregating by the mean of the measurement at each subject and each activity. This dataset is written to a text file so that it can be read back into R. 
-
-
-```r
-final <- read.table("tidydata.txt", sep="\t", header = TRUE)
-dim(final)
-```
-
-```
-## [1] 180  68
-```
-
-Thus, the final dataset represents the means and st. dev. of 33 measures at each of the 6 activity types for each of the 30 subjects, or 180 observations of 68 variables (66 mean/std values plus SubjectID and Activity Type).  
-
-This final dataset represents a tidy dataset because it fullfills the requirements of [one variable per column, and one observation per row][3]. The colums represent Subject, ActivityType and then the average mean and std of each of the 33 features. 
-
-
-[1]: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip "UCI HAR Dataset"  
-
-[2]: https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones "Details of UCI HAR Dataset"  
-
-[3]: http://vita.had.co.nz/papers/tidy-data.pdf "Hadley Wickham, Tidy Data"
