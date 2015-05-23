@@ -5,7 +5,7 @@
 **Summary**: Given the dataset available at [the UCI Machine Learning Repository]((https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)), we will construct a final tidy dataset, which contains an average value for each feature at every activity-subject pair. ([Source .zip file](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).)
 
 This repo contains:  
-  * [run_analysis.R](run_analysis.R), an R script, which downloads the source data archive and reates the final dataset.  
+  * [run_analysis.R](run_analysis.R), an R script, which downloads the source data archive and creates the final dataset.  
   * [CodeBook.md](CodeBook.md), listing and description of variables in data.   
   * [tidydata.txt](tidydata.txt), the final data, which can be read into r with the code below:  `read.table("tidydata.txt", sep="\t", header = TRUE)`
 
@@ -30,7 +30,7 @@ To create the dataset, 7 files from the original .zip archive were used
 The test and training datasets are clipped together with `rbind`.  
 
 ###Step 2: Extract only the mean and standard deviation measurements:  
-There are 33 features listed for the UCI dataset in the file `features_info.txt`, which is present in the source .zip file but which is not extracted by `run_analysis.R`. They are listed below (XYZ represents 3 variables, one for each axis): 
+There are 33 features listed for the UCI dataset in the file `features_info.txt` (XYZ represents 3 variables, one for each axis): 
 
 tBodyAcc-XYZ  
 tGravityAcc-XYZ  
@@ -50,19 +50,19 @@ fBodyAccJerkMag
 fBodyGyroMag  
 fBodyGyroJerkMag    
 
-The search string "mean[^meanFreq]|std" was passed to `grep()` to get only those measurements representing mean and std. The meanFreq variable is the "Weighted average of the frequency components to obtain a mean frequency", so does not represent the mean of a feature measurement (based on the `features_info.txt` file from the [source .zip file](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). 
+The search string "mean[^meanFreq]|std" was passed to `grep()` to get only those measurements representing mean and std. The meanFreq variable is the "Weighted average of the frequency components to obtain a mean frequency", so does not represent the mean of one of the 33 mean/std features. Therefore, the grep command returns 66 (33*2) variables. 
 
 ###Step 3: Use Descriptive Activity Names:  
 Using the information in `activity_labels.txt`, the second column is converted from digits to descriptive labels.
 
 ###Step 4: Appropriately label the dataset:  
 The current dataset is now a long form dataset with the columns:  
-    *SubjectID: subject number  
-    *ActivityType:activity labels  
-    *Measurement: name of feature  
-    *MeasureValue: value of Measurement  
-  
-  Since the values of Measurement will later be used as variable names, two cleanup steps are used to remove "()" and replace "-" with underscores. For example: `fBodyAcc-mean()-X` becomes `fBodyAcc_mean_X`. 
+*SubjectID: subject number  
+*ActivityType:activity labels  
+*Measurement: name of feature  
+*MeasureValue: value of Measurement  
+
+ Since the values of Measurement will later be used as variable names, two cleanup steps are used to remove "()" and replace "-" with underscores. For example: `fBodyAcc-mean()-X` becomes `fBodyAcc_mean_X`. 
 
 ###Step 5: Create a second indepedent tidy dataset:  
 The current long form dataset is casted into a wide form, aggregating by the mean of the measurement at each subject and each activity. This dataset is written to a text file so that it can be read back into R. 
