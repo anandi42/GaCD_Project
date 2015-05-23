@@ -1,5 +1,5 @@
 #Tidying up the Human Activity Recognition Dataset
-**Author: https://github.com/anandi42**
+**Author: https://github.com/anandi42**  
 **Created for [Getting and Cleaning Data class on Coursera](https://class.coursera.org/getdata-014)**
 
 **Summary**: Given the dataset available at [the UCI Machine Learning Repository]((https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)), we will construct a final tidy dataset, which contains an average value for each feature at every activity-subject pair. ([Source .zip file](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).)
