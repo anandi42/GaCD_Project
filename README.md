@@ -1,12 +1,15 @@
-#Getting and Cleaning Data Course Project
+#Tidying up the Human Activity Recognition Dataset
+**Author: https://github.com/anandi42**
+**Created for [Getting and Cleaning Data class on Coursera](https://class.coursera.org/getdata-014)**
 
-**Summary**: Starting with the dataset available at [the UCI Machine Learning Repository]((https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)), we construct a final tidy dataset consisting of the average of each variable for each activity and each subject. ([Source .zip file](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).)
+**Summary**: Given the dataset available at [the UCI Machine Learning Repository]((https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)), we will construct a final tidy dataset, which contains an average value for each feature at every activity-subject pair. ([Source .zip file](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip).)
 
 This repo contains:  
-  * [run_analysis.R](run_analysis.R), a script, which when run, will download the dataset, and create the final dataset.  
+  * [run_analysis.R](run_analysis.R), an R script, which downloads the source data archive and reates the final dataset.  
   * [CodeBook.md](CodeBook.md), listing and description of variables in data.   
   * [tidydata.txt](tidydata.txt), the final data, which can be read into r with the code below:  `read.table("tidydata.txt", sep="\t", header = TRUE)`
 
+Read on for a detailed description of the construction of this dataset, or simply checkout the files of this repo and run the .R file to get the data directly. 
 
 #Creation of the Dataset
 To create the dataset, 7 files from the original .zip archive were used
