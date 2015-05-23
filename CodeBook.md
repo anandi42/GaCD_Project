@@ -1,11 +1,7 @@
-# Getting and Cleaning Data: Course Project
-Sunday, May 19, 2015  
-#Codebook for Tidy UCI HAR Data Set
+#Codebook for dataset created from the HAR dataset
 
   This document provides details the dataset [created by run_analysis.R.](run_analysis.R)
  
-
-  
 List of Variables:
 
 ```
@@ -47,11 +43,11 @@ List of Variables:
   
 The first two variables are: 
 
-  *`SubjectID`: subject number, (1-20)    
+  *`SubjectID`: subject number, (1-30)    
   
   *`ActivityType`: activity labels (WALKNG, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING). 
       
-  The rest of the variables represent the average mean and std measuremtn for each of 33 features, aggregated for each subject and each activity. The original features were:
+  The rest of the variables represent the average mean and std measurements for each of 33 features, aggregated for each subject and each activity. The original features were:
   
 tBodyAcc-XYZ  
 tGravityAcc-XYZ  
@@ -71,5 +67,5 @@ fBodyAccJerkMag
 fBodyGyroMag  
 fBodyGyroJerkMag    
 
-  Each of the features above had a `mean()` and `std()` value, which were extracted and then averaged at each subject/activity type. The names of the features were slightly modified to get rid of special characters () and - just to make manipulating the variables in the dataset a little cleaner. 
+  Each of the features above had a `mean()` and `std()` value, which were extracted and then averaged at each subject-activity combination. The names of the features were slightly modified to get rid of special characters () and - just to make manipulating the variables in the dataset a little cleaner. 
 
