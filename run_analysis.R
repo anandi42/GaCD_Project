@@ -83,7 +83,4 @@ alldata$Measurement <- gsub("\\-", "\\_", alldata$Measurement)
 final <- dcast(alldata, SubjectID + ActivityType ~ Measurement, mean, value.var="Measure_Value")
 write.table(final, "tidydata.txt", row.names=FALSE, sep="\t")
 
-#finalcleanup
-rm(list = ls())
-
 
