@@ -8,7 +8,7 @@ This repo contains:
   * [tidydata.txt](tidydata.txt), the final data, which can be read into r with the code below:  `read.table("tidydata.txt", sep="\t", header = TRUE)`
 
 
-#Creation of the Dataset: explanation and justification   
+#Creation of the Dataset
 To create the dataset, 7 files from the original .zip archive were used
 
 ```
@@ -47,7 +47,7 @@ fBodyAccJerkMag
 fBodyGyroMag  
 fBodyGyroJerkMag    
 
-The search string "mean[^meanFreq]|std" was passed to `grep()` to get only those measurements representing mean and std. The meanFreq variable is not one of the `mean()` or `std()` measures of the 33 features listed above.  
+The search string "mean[^meanFreq]|std" was passed to `grep()` to get only those measurements representing mean and std. The meanFreq variable is the "Weighted average of the frequency components to obtain a mean frequency", so does not represent the mean of a feature measurement (based on the `features_info.txt` file from the [source .zip file](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). 
 
 ###Step 3: Use Descriptive Activity Names:  
 Using the information in `activity_labels.txt`, the second column is converted from digits to descriptive labels.
