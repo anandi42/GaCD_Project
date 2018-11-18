@@ -49,23 +49,25 @@ The first two variables are:
       
   The rest of the variables represent the average mean and std measurements for each of 33 features, aggregated for each subject and each activity. The original features were:
   
-tBodyAcc-XYZ  
-tGravityAcc-XYZ  
-tBodyAccJerk-XYZ  
-tBodyGyro-XYZ  
-tBodyGyroJerk-XYZ  
-tBodyAccMag  
-tGravityAccMag  
-tBodyAccJerkMag  
-tBodyGyroMag  
-tBodyGyroJerkMag  
-fBodyAcc-XYZ  
-fBodyAccJerk-XYZ  
-fBodyGyro-XYZ  
-fBodyAccMag  
-fBodyAccJerkMag  
-fBodyGyroMag  
-fBodyGyroJerkMag    
+  * tBodyAcc-XYZ  
+  * tGravityAcc-XYZ  
+  * tBodyAccJerk-XYZ  
+  * tBodyGyro-XYZ  
+  * tBodyGyroJerk-XYZ  
+  * tBodyAccMag  
+  * tGravityAccMag  
+  * tBodyAccJerkMag  
+  * tBodyGyroMag  
+  * tBodyGyroJerkMag  
+  * fBodyAcc-XYZ  
+  * fBodyAccJerk-XYZ  
+  * fBodyGyro-XYZ  
+  * fBodyAccMag  
+  * fBodyAccJerkMag  
+  * fBodyGyroMag  
+  * fBodyGyroJerkMag    
 
-  Each of the features above had a `mean()` and `std()` value, which were extracted and then averaged at each subject-activity combination. The names of the features were slightly modified to get rid of special characters () and - just to make manipulating the variables in the dataset a little cleaner. 
+  Each of the features above has a `mean()` and `std()` value, which were extracted from the dataset and then averaged at each subject-activity combination. The names of the features were slightly modified to get rid of special characters _()_ and _-_, so it was cleaner to manipulate the dataset. 
+  
+
 

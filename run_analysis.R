@@ -2,23 +2,24 @@
 #See README for further explanation of the steps coded below. 
 
 ##Setup Steps
-mainDir <- "~"
-subDir <- "/data/GaCD_Project"
-
-if (file.exists(subDir)){
-  setwd(file.path(mainDir, subDir))
-} else {
-  dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
-  setwd(file.path(mainDir, subDir))
-  }
-
+##packages required: dplyr, reshape, gsubfn
 rm(list = ls())
 library(dplyr)
 library(reshape2)
 library(gsubfn)
 
-##Get the Data
+#Use the following lines if you wish to work in a subdiretory from working diretory for this project
 
+subDir <- "data"
+if (dir.exists(subDir)){
+  setwd(subDir)
+} else {
+  dir.create(subDir, showWarnings = FALSE)
+  setwd(subDir)
+}
+
+
+##Get the Data
 download.path <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 filename <- "UCIdataset.zip"
 
